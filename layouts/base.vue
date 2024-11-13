@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div>Chưa có token</div>
+  <slot></slot>
 </template>
 
 <style scoped lang="scss">

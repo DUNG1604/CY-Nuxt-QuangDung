@@ -1,10 +1,13 @@
-    export default defineEventHandler((event) => {
-        //check what the page is
-        const req = event.node.req ?? {};
-        const res = event.node.res ?? {};
-        if(req.url?.includes("/test")) {
-            console.log("log test server");
-            res.writeHead(301, {Location: "/not-login"});
-            res.end();
-        }
-    })
+import { parseCookies } from 'h3';
+import { sendRedirect } from 'h3';
+
+export default defineEventHandler(async (event) => {
+    // const cookies = parseCookies(event);
+    // const token = cookies.token;
+    // const exceptionPage = ['/login', '/signup', '/'];
+    // const url = event.node.req.url || '';
+    //
+    // if (!token && !exceptionPage.includes(url)) {
+    //     return sendRedirect(event, '/login');
+    // }
+});
