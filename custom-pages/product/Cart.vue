@@ -11,13 +11,11 @@
               @change="updateOrderList(item)"
           />
           <ItemCart
-              :id="item.id"
+              :id="item.product_id"
               :price="item.price"
               :img="item.img"
               :name="item.name"
               :quantity="item.quantity"
-              @increase="handleIncrease"
-              @reduce="handleIncrease"
           />
       </div>
     </div>
@@ -85,10 +83,6 @@ const placeOrder = () => {
     showToastErr("Order list Empty, please add to order!!");
   }
 
-};
-
-const handleIncrease = (data) => {
-  console.log(data.props.name)
 };
 
 </script>

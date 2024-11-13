@@ -9,9 +9,21 @@ function GetListCategory(){
 function PostOrder(payload){
     return methodService().post('/order',payload);
 }
+function GetListOrder(){
+    return methodService().get('/orders');
+}
+function GetOrder(id){
+    return methodService().get(`/orders/${id}`);
+}
+function GetProductDetail(id){
+    return methodService().get(`/products/${id}`);
+}
 
 export const productService = {
     GetCardItem,
     GetListCategory,
     PostOrder,
+    GetListOrder,
+    GetOrder,
+    GetProductDetail,
 }

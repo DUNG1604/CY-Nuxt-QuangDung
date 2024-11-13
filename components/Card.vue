@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <div class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
       <div
           class="h-[250px] relative mx-4 mt-4 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
@@ -50,14 +50,23 @@
           }}
         </div>
       </div>
-      <div class="p-6 pt-3">
+      <div class="flex gap-[20px] px-2 py-6">
         <button
             class="block w-full select-none rounded-lg bg-pink-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
             data-ripple-light="true"
             @click="handleAdd"
+            :disabled="stock <= 0"
         >
-          Add to cart
+          {{ stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
+        </button>
+        <button
+            class="block w-full select-none rounded-lg bg-blue-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
+            data-ripple-light="true"
+            @click="handleView"
+        >
+          View
         </button>
       </div>
     </div>
@@ -65,6 +74,8 @@
 </template>
 
 <script setup>
+
+const router = useRouter();
 const props = defineProps({
   id: {
     default: 0,
@@ -99,6 +110,14 @@ const props = defineProps({
 const emit = defineEmits(["sendId:id"]);
 const handleAdd = () => {
   emit("sendId:id", props);
+}
+const handleView = ()=>{
+  router.push({
+    params:{
+      id: props.id,
+    }
+  })
+  navigateTo(`/product/${props.id}`)
 }
 
 </script>

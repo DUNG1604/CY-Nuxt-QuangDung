@@ -39,4 +39,19 @@ export const routes = [
         path: '/order-success',
         file: '~/custom-pages/product/OrderSuccess.vue'
     },
+    {
+        name: 'HistoryOrder',
+        path: '/history-order',
+        file: '~/custom-pages/product/HistoryOrder.vue'
+    },
+    {
+        name: 'OrderDetail',
+        path: '/history-order/:id',
+        file: '~/custom-pages/product/OrderDetail.vue'
+    },
+    {
+        name: 'ProductDetail',
+        path: '/product/:id',
+        file: '~/custom-pages/product/ProductDetail.vue'
+    },
 ];

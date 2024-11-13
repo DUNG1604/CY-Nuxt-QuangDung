@@ -2,7 +2,7 @@
   <div class="bg-white">
     <div class="py-2 px-12 border-b border-gray-200 shadow-md">
       <div class="flex justify-between items-center">
-        <div @click="navigateTo('/')" class="cursor-pointer text-center text-[#5046e5] text-3xl font-extrabold">
+        <div @click="navigateTo('/')" class="cursor-pointer text-center text-[#5046e5] text-[25px] font-extrabold">
           Shop's Andrew
         </div>
         <div v-if="name" class="flex gap-4 items-center">
@@ -19,7 +19,8 @@
               </ul>
             </div>
           </div>
-          <div @click="navigateTo('/cart')" class="cursor-pointer">
+          <div @click="navigateTo('/cart')" class="cursor-pointer relative">
+            <div class="absolute p-[10px] rounded-full bg-red-500 text-white flex items-center text-[12px] font-bold justify-center w-[20px] h-[20px] left-[16px]">{{store.product.listCartItem.length}}</div>
             <span class="material-symbols-outlined text-3xl">
               shopping_cart
             </span>
@@ -57,8 +58,7 @@ const toggleDropdown = () => {
 };
 
 const goToOrderHistory = () => {
-  navigateTo('/order-history');
-  isDropdownVisible.value = false;
+  navigateTo('/history-order');
 };
 
 const logout = () => {
@@ -74,5 +74,4 @@ const logout = () => {
 </script>
 
 <style scoped>
-/* Add any custom styling here */
 </style>

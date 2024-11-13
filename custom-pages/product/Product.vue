@@ -62,7 +62,7 @@ const scrollContainer = ref(null);
 const loading = ref(false);
 const router = useRouter();
 const route = useRoute();
-const  toast = useToast();
+const toast = useToast();
 
 const showToastErr = (message) => {
   toast.error(message);
@@ -142,33 +142,21 @@ const handleAddToCart = (props) => {
   const existingItem = store.product.listCartItem.find(item => item.product_id === props.id);
   const itemInList = store.product.listItem.find(item => item.id === props.id);
   if (existingItem) {
-    if (itemInList.stock > 0) {
-      if (itemInList && itemInList.stock > 0) {
-        itemInList.stock -= 1;
-      }
-      existingItem.quantity += 1;
-      showToastSuccess(`INCREASE QUANTITY ${props.title} IN CART`);
-    } else {
-      showToastErr(`${props.title} OUT OFF STOCK!`);
-    }
+    itemInList.stock -= 1;
+    existingItem.quantity += 1;
+    showToastSuccess(`INCREASE QUANTITY ${props.title} IN CART`);
   } else {
-    if (itemInList.stock > 0) {
-      if (itemInList && itemInList.stock > 0) {
-        itemInList.stock -= 1;
-      }
-      const item = {
-        product_id: props.id,
-        quantity: 1,
-        price: props.price,
-        name: props.title,
-        img: props.img,
-        isChoose: false,
-      };
-      store.product.listCartItem.push(item);
-      showToastSuccess(`ADD ${props.title} TO CART`);
-    } else {
-      showToastErr(`${props.title} OUT OFF STOCK!`);
-    }
+    itemInList.stock -= 1;
+    const item = {
+      product_id: props.id,
+      quantity: 1,
+      price: props.price,
+      name: props.title,
+      img: props.img,
+      isChoose: false,
+    };
+    store.product.listCartItem.push(item);
+    showToastSuccess(`ADD ${props.title} TO CART`);
   }
 };
 

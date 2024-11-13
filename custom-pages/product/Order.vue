@@ -82,6 +82,11 @@ const totalPrice = computed(() => {
 });
 
 const placeOrder = async () => {
+  if(!store.product.listOrder.length){
+    showToastErr("Order list Empty, please add to order!!");
+    navigateTo('/product');
+    return;
+  }
   const data = {
     address: address.value,
     phone: phone.value,

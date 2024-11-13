@@ -16,6 +16,7 @@ export const counterStore = defineStore('counter', () => {
         listCartItem:[],
         listOrder:[],
         billOrder:null,
+        listHistoryOrder:[],
     })
 
   return { user, product };
