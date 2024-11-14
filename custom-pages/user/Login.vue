@@ -113,12 +113,11 @@ const handleSubmit = async () => {
       password: inputValue.value.password,
     });
 
-    store.user.name = data.user.name;
     const tokenCookie = useCookie('token');
     tokenCookie.value = data.token;
     const nameCookie = useCookie('name');
     nameCookie.value = data.user.name;
-    navigateTo("/");
+    navigateTo("/product");
     showToastSuccess("Login Success");
   } catch (error) {
     showToastErr("Login error");

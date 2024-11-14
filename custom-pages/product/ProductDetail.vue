@@ -49,12 +49,8 @@ const showToastSuccess = (message) => {
   toast.success(message);
 }
 
-let product = ref(null);
-
-const { data } = await useAsyncData('OrderDetail', async () => {
-  const response = await productService.GetProductDetail(id);
-  product.value = response;
-  return product;
+const { data : product } = await useAsyncData('OrderDetail', async () => {
+  return await productService.GetProductDetail(id);
 });
 
 const handleAddToCart = () => {

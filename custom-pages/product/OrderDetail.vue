@@ -46,12 +46,8 @@ import { productService } from "~/services/productService.js";
 const route = useRoute();
 const id  = route.params.id;
 
-let order = null;
-
-const { data } = await useAsyncData("OrderDetail", async () => {
-  const response = await productService.GetOrder(id);
-  order = response;
-  return order;
+const { data : order } = await useAsyncData("OrderDetail", async () => {
+  return await productService.GetOrder(id);
 });
 
 </script>

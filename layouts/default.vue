@@ -42,6 +42,7 @@ import { ref } from 'vue';
 import { useCookie } from "#app";
 import { counterStore } from "~/store/counterStore.js";
 import { useToast } from "vue-toastification";
+import {userService} from "~/services/userService.js";
 
 const toast = useToast();
 const name = useCookie("name").value;
@@ -61,13 +62,14 @@ const goToOrderHistory = () => {
   navigateTo('/history-order');
 };
 
-const logout = () => {
+const logout = async () => {
   const tokenCookie = useCookie('token');
   const nameCookie = useCookie('name');
   tokenCookie.value = null;
   nameCookie.value = null;
   store.product.listOrder = [];
   store.product.listCartItem = [];
+  await userService.Logout();
   showToastSuccess("Logout Success");
   navigateTo('/login');
 };

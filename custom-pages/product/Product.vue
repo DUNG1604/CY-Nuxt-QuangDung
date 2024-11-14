@@ -29,7 +29,7 @@
     </div>
 
     <div v-if="store.product.listItem.length">
-      <div class="grid grid-cols-3 gap-[15px]">
+      <div class="grid grid-cols-3 gap-[15px] px-[100px]">
         <div class="col-span-1" v-for="item in store.product.listItem" :key="item.id">
           <Card
               :id="item.id"
@@ -51,7 +51,7 @@
 
 <script setup>
 import {ref, onMounted} from 'vue';
-import {useRouter} from '#app';
+import {useCookie, useRouter} from '#app';
 import Card from '~/components/Card.vue';
 import {counterStore} from "~/store/counterStore.js";
 import {productService} from '~/services/productService.js';
@@ -71,7 +71,7 @@ const showToastSuccess = (message) => {
   toast.success(message);
 }
 
-const {data: listCard} = await useAsyncData("callItem", async () => {
+const {data: list} = await useAsyncData("callItem", async () => {
   const {inputSearch, category, page} = route.query;
   if (inputSearch) {
     store.product.inputSearch = inputSearch;
@@ -87,11 +87,14 @@ const {data: listCard} = await useAsyncData("callItem", async () => {
   store.product.totalItem = list.total;
   return list;
 })
+console.log(list);
+
 const {data: listCategory} = await useAsyncData("callCategory", async () => {
   const list = await productService.GetListCategory();
   store.product.listCategory = list.data;
   return list;
 })
+console.log(listCategory);
 
 const loadItems = async () => {
   if (loading.value) return;
@@ -108,12 +111,12 @@ const loadItems = async () => {
       store.product.listItem = [...store.product.listItem, ...list.data];
     }
     store.product.totalItem = list.total;
+    loading.value = false;
   } catch (error) {
     console.error('Error loading items:', error);
-  } finally {
-    loading.value = false;
   }
 };
+
 
 const handleSubmit = () => {
   router.push({

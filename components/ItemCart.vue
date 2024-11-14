@@ -60,7 +60,6 @@
 import { counterStore } from "~/store/counterStore.js";
 import { useToast } from "vue-toastification";
 
-const  router = useRouter();
 const toast = useToast();
 const showToastErr = (message) => {
   toast.error(message);

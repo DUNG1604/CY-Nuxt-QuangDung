@@ -4,8 +4,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
         "/signup",
         "/"
     ]
-    if (process.client && !useCookie('token').value) {
+    if (!useCookie('token').value) {
         if (exceptionPage.includes(to.path)) return
-        return window.location.href = "/login"
+        //return window.location.href = "/login"
+        return navigateTo('/login');
     }
 })
